@@ -3,13 +3,14 @@ import { Button } from "frames.js/next";
 import { frames } from "./frames";
 
 const handleRequest = frames(async (ctx) => {
-  if (ctx.message?.untrustedData?.transactionId) {
+  const txnId =
+    (ctx.message as any)?.untrustedData?.transactionId ||
+    (ctx.message as any)?.untrustedData?.actionResponse;
+  if (txnId) {
     return {
       image: (
         <div tw="flex flex-col">
-          <div tw="flex">
-            Tx Hash: {ctx.message.untrustedData.transactionId}
-          </div>
+          <div tw="flex">Tx Hash: {txnId}</div>
         </div>
       ),
       buttons: [
