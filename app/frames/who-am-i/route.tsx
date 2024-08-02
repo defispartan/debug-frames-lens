@@ -6,15 +6,15 @@ import { frames } from "../frames";
 export const POST = frames(async (ctx) => {
   let walletAddress: string | undefined =
     // farcaster
-    ctx.message?.requesterCustodyAddress ||
+    (ctx.message as any)?.requesterCustodyAddress ||
     // xmtp
-    ctx.message?.verifiedWalletAddress;
+    (ctx.message as any)?.verifiedWalletAddress;
 
   if (ctx.clientProtocol?.id === "lens") {
     const lensClient = new LensClient({ environment: production });
 
     const profile = await lensClient.profile.fetch({
-      forProfileId: ctx.message?.profileId,
+      forProfileId: (ctx.message as any)?.profileId,
     });
 
     walletAddress = profile?.ownedBy.address;
