@@ -14,11 +14,8 @@ const handleRequest = frames(async (ctx) => {
         </div>
       ),
       buttons: [
-        <Button action="post" target="/who-am-i">
-          Who am I?
-        </Button>,
         <Button action="tx" target="/tx/approve" post_url="/">
-          Approve
+          Submit Again
         </Button>,
       ],
     };
@@ -26,15 +23,12 @@ const handleRequest = frames(async (ctx) => {
   return {
     image: (
       <div tw="flex flex-col">
-        <div tw="flex">Click the button</div>
+        <div tw="flex">Submit Zero-Value Transaction on Amoy Testnet</div>
       </div>
     ),
     buttons: [
-      <Button action="post" target="/who-am-i">
-        Who am I?
-      </Button>,
       <Button action="tx" target="/tx/approve" post_url="/">
-        Approve
+        Submit Tx
       </Button>,
     ],
   };
